@@ -5,15 +5,26 @@
   <title>Order Berhasil</title>
 </head>
 
-<body style="background:#0f172a;color:white;text-align:center;
-padding:60px;font-family:Arial">
+<body style="background:#0f172a;color:white;
+text-align:center;padding:60px;font-family:Arial">
 
   <h1>✅ ORDER BERHASIL</h1>
-  <p>Terima kasih sudah order di JYD Store</p>
 
+  <p><b>Username Roblox:</b> <span id="user"></span></p>
+  <p><b>Paket:</b> <span id="paket"></span></p>
+  <p><b>Harga:</b> Rp <span id="harga"></span></p>
+
+  <br>
   <a href="index.html" style="color:#38bdf8;font-size:18px">
     ⬅ Kembali ke Dashboard
   </a>
+
+<script>
+  const q = new URLSearchParams(window.location.search);
+  document.getElementById("user").innerText = q.get("user");
+  document.getElementById("paket").innerText = q.get("paket");
+  document.getElementById("harga").innerText = q.get("harga");
+</script>
 
 </body>
 </html>
