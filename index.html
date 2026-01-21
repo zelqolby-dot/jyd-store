@@ -1,18 +1,209 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>JY Store | Robux Panel</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0f172a;
+  color: white;
+}
+
+/* LOGIN */
+#login {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-box {
+  background: #020617;
+  padding: 30px;
+  border-radius: 10px;
+  width: 280px;
+  text-align: center;
+}
+
+.login-box input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.login-box button {
+  width: 100%;
+  padding: 10px;
+  background: #38bdf8;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* PANEL */
+#panel { display: none; }
+
+.sidebar {
+  width: 220px;
+  height: 100vh;
+  background: #020617;
+  position: fixed;
+  padding: 20px;
+}
+
+.sidebar h2 {
+  color: #38bdf8;
+  text-align: center;
+}
+
+.main {
+  margin-left: 240px;
+  padding: 30px;
+}
+
+.header {
+  background: #020617;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.header input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: #020617;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.card h3 { color: #38bdf8; }
+
+.card button {
+  margin-top: 10px;
+  width: 100%;
+  padding: 10px;
+  background: #38bdf8;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div id="login">
+  <div class="login-box">
+    <h2>Login Panel</h2>
+    <input id="username" placeholder="Username">
+    <button onclick="login()">Login</button>
+  </div>
+</div>
+
+<!-- PANEL -->
+<div id="panel">
+  <div class="sidebar">
+    <h2>JY STORE</h2>
+    <p>Robux Panel</p>
+    <button onclick="logout()" style="margin-top:20px;width:100%">Logout</button>
+  </div>
+
+  <div class="main">
+    <div class="header">
+      <h1>Dashboard</h1>
+      <p>Login sebagai <b id="userText"></b></p>
+      <input id="roblox" placeholder="Username Roblox">
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <h3>400 Robux</h3>
+        <p>Rp 50.000</p>
+        <button onclick="order('400 Robux','Rp 50.000')">Beli</button>
+      </div>
+
+      <div class="card">
+        <h3>800 Robux</h3>
+        <p>Rp 95.000</p>
+        <button onclick="order('800 Robux','Rp 95.000')">Beli</button>
+      </div>
+
+      <div class="card">
+        <h3>1700 Robux</h3>
+        <p>Rp 190.000</p>
+        <button onclick="order('1700 Robux','Rp 190.000')">Beli</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
-  function login() {
-    var user = document.getElementById("user").value;
-    var pass = document.getElementById("pass").value;
+// AUTO LOGIN JIKA SUDAH PERNAH
+window.onload = function () {
+  const savedUser = localStorage.getItem("user");
+  const savedRoblox = localStorage.getItem("roblox");
 
-    if (user.length > 0 && pass.length > 0) {
-      document.getElementById("login").style.display = "none";
-      document.getElementById("panel").style.display = "block";
-      document.getElementById("showUser").innerText = user;
-    } else {
-      alert("Isi username dan password dulu bro");
-    }
+  if (savedUser) {
+    document.getElementById("login").style.display = "none";
+    document.getElementById("panel").style.display = "block";
+    document.getElementById("userText").innerText = savedUser;
   }
 
-  function order() {
-    window.location.href = "success.html";
+  if (savedRoblox) {
+    document.getElementById("roblox").value = savedRoblox;
   }
+};
+
+function login() {
+  const u = document.getElementById("username").value;
+  if (!u) return alert("Isi username dulu!");
+
+  localStorage.setItem("user", u);
+
+  document.getElementById("login").style.display = "none";
+  document.getElementById("panel").style.display = "block";
+  document.getElementById("userText").innerText = u;
+}
+
+function logout() {
+  localStorage.removeItem("user");
+  location.reload();
+}
+
+function order(paket, harga) {
+  const roblox = document.getElementById("roblox").value;
+  if (!roblox) return alert("Isi username Roblox dulu!");
+
+  localStorage.setItem("roblox", roblox);
+
+  const wa = "6281234567890"; // GANTI NOMOR LU
+  const pesan =
+    "Halo admin Chen Store\n\n" +
+    "Saya mau beli Robux\n" +
+    "Paket: " + paket + "\n" +
+    "Harga: " + harga + "\n" +
+    "Username Roblox: " + roblox;
+
+  window.location.href =
+    "https://wa.me/" + wa + "?text=" + encodeURIComponent(pesan);
+}
 </script>
+
+</body>
+</html>
+
