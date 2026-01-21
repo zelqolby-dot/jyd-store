@@ -159,18 +159,18 @@
     document.getElementById("showUser").innerText = user;
   }
 
-  function order(paket, harga) {
-    const roblox = document.getElementById("roblox").value;
+ <script>
+function order(paket, harga) {
+  const roblox = document.getElementById("roblox").value;
 
-    if (!roblox) {
-      alert("Username Roblox wajib diisi");
-      return;
-    }
-
-    window.location.href =
-      `success.html?user=${roblox}&paket=${paket}&harga=${harga}`;
+  if (!roblox) {
+    alert("Username Roblox wajib diisi");
+    return;
   }
+
+  window.location.href =
+    `payment.html?user=${roblox}&paket=${paket}&harga=${harga}`;
+}
 </script>
 
-</body>
-</html>
+
