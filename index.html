@@ -1,168 +1,14 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <title>Chen Store | Robux Panel</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #0f172a;
-      color: white;
-    }
-
-    .hidden { display: none; }
-
-    /* LOGIN */
-    .login {
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .login-box {
-      background: #020617;
-      padding: 30px;
-      border-radius: 12px;
-      width: 300px;
-      text-align: center;
-    }
-
-    .login-box input {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 6px;
-      border: none;
-    }
-
-    .login-box button {
-      width: 100%;
-      padding: 10px;
-      background: #38bdf8;
-      border: none;
-      border-radius: 6px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    /* PANEL */
-    .sidebar {
-      width: 220px;
-      height: 100vh;
-      background: #020617;
-      position: fixed;
-      padding: 20px;
-    }
-
-    .sidebar h2 {
-      color: #38bdf8;
-      text-align: center;
-    }
-
-    .main {
-      margin-left: 240px;
-      padding: 30px;
-    }
-
-    .header {
-      background: #020617;
-      padding: 20px;
-      border-radius: 12px;
-      margin-bottom: 20px;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-    }
-
-    .card {
-      background: #020617;
-      padding: 20px;
-      border-radius: 12px;
-      text-align: center;
-    }
-
-    .card h3 { color: #38bdf8; }
-
-    .card button {
-      margin-top: 10px;
-      padding: 10px;
-      width: 100%;
-      background: #38bdf8;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-  </style>
-</head>
-
-<body>
-
-<!-- LOGIN -->
-<div class="login" id="login">
-  <div class="login-box">
-    <h2>Login Panel</h2>
-    <input id="user" placeholder="Username">
-    <input id="pass" type="password" placeholder="Password">
-    <button onclick="login()">Login</button>
-  </div>
-</div>
-
-<!-- PANEL -->
-<div id="panel" class="hidden">
-  <div class="sidebar">
-    <h2>CHEN STORE</h2>
-    <p>Robux Panel</p>
-  </div>
-
-  <div class="main">
-    <div class="header">
-      <h1>Dashboard</h1>
-      <p>Login sebagai <b id="showUser"></b></p>
-      <input id="roblox" placeholder="Username Roblox"
-             style="width:100%;padding:10px;border-radius:6px;border:none;">
-    </div>
-
-    <div class="cards">
-      <div class="card">
-        <h3>400 Robux</h3>
-        <p>Rp 50.000</p>
-        <button onclick="order()">Beli</button>
-      </div>
-
-      <div class="card">
-        <h3>800 Robux</h3>
-        <p>Rp 95.000</p>
-        <button onclick="order()">Beli</button>
-      </div>
-
-      <div class="card">
-        <h3>1700 Robux</h3>
-        <p>Rp 190.000</p>
-        <button onclick="order()">Beli</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 <script>
   function login() {
-    const user = document.getElementById("user").value;
-    const pass = document.getElementById("pass").value;
+    var user = document.getElementById("user").value;
+    var pass = document.getElementById("pass").value;
 
-    if (user !== "" && pass !== "") {
-      document.getElementById("login").classList.add("hidden");
-      document.getElementById("panel").classList.remove("hidden");
+    if (user.length > 0 && pass.length > 0) {
+      document.getElementById("login").style.display = "none";
+      document.getElementById("panel").style.display = "block";
       document.getElementById("showUser").innerText = user;
     } else {
-      alert("Username & password wajib diisi");
+      alert("Isi username dan password dulu bro");
     }
   }
 
@@ -170,6 +16,3 @@
     window.location.href = "success.html";
   }
 </script>
-
-</body>
-</html>
