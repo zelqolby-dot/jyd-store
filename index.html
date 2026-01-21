@@ -15,7 +15,6 @@
 
     .hidden { display: none; }
 
-    /* LOGIN */
     #login {
       height: 100vh;
       display: flex;
@@ -49,7 +48,6 @@
       cursor: pointer;
     }
 
-    /* PANEL */
     .sidebar {
       width: 220px;
       height: 100vh;
@@ -145,21 +143,20 @@
 </div>
 
 <script>
-  function login() {
-    const user = document.getElementById("user").value;
-    const pass = document.getElementById("pass").value;
+function login() {
+  const user = document.getElementById("user").value;
+  const pass = document.getElementById("pass").value;
 
-    if (!user || !pass) {
-      alert("Isi username & password");
-      return;
-    }
-
-    document.getElementById("login").classList.add("hidden");
-    document.getElementById("panel").classList.remove("hidden");
-    document.getElementById("showUser").innerText = user;
+  if (!user || !pass) {
+    alert("Isi username & password");
+    return;
   }
 
- <script>
+  document.getElementById("login").classList.add("hidden");
+  document.getElementById("panel").classList.remove("hidden");
+  document.getElementById("showUser").innerText = user;
+}
+
 function order(paket, harga) {
   const roblox = document.getElementById("roblox").value;
 
@@ -173,4 +170,5 @@ function order(paket, harga) {
 }
 </script>
 
-
+</body>
+</html>
