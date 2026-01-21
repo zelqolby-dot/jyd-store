@@ -13,6 +13,8 @@
       color: white;
     }
 
+    .hidden { display: none; }
+
     /* LOGIN */
     #login {
       height: 100vh;
@@ -48,21 +50,12 @@
     }
 
     /* PANEL */
-    #panel {
-      display: none;
-    }
-
     .sidebar {
       width: 220px;
       height: 100vh;
       background: #020617;
       position: fixed;
       padding: 20px;
-    }
-
-    .sidebar h2 {
-      color: #38bdf8;
-      text-align: center;
     }
 
     .main {
@@ -79,7 +72,7 @@
 
     .cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
       gap: 20px;
     }
 
@@ -90,14 +83,9 @@
       text-align: center;
     }
 
-    .card h3 {
-      color: #38bdf8;
-    }
-
     .card button {
       width: 100%;
       padding: 10px;
-      margin-top: 10px;
       background: #38bdf8;
       border: none;
       border-radius: 6px;
@@ -120,7 +108,7 @@
 </div>
 
 <!-- PANEL -->
-<div id="panel">
+<div id="panel" class="hidden">
   <div class="sidebar">
     <h2>JYD STORE</h2>
     <p>Robux Panel</p>
@@ -138,42 +126,50 @@
       <div class="card">
         <h3>400 Robux</h3>
         <p>Rp 50.000</p>
-        <button onclick="order()">Beli</button>
+        <button onclick="order('400 Robux','50000')">Beli</button>
       </div>
 
       <div class="card">
         <h3>800 Robux</h3>
         <p>Rp 95.000</p>
-        <button onclick="order()">Beli</button>
+        <button onclick="order('800 Robux','95000')">Beli</button>
       </div>
 
       <div class="card">
         <h3>1700 Robux</h3>
         <p>Rp 190.000</p>
-        <button onclick="order()">Beli</button>
+        <button onclick="order('1700 Robux','190000')">Beli</button>
       </div>
     </div>
   </div>
 </div>
 
 <script>
-function login() {
-  const user = document.getElementById("user").value;
-  const pass = document.getElementById("pass").value;
+  function login() {
+    const user = document.getElementById("user").value;
+    const pass = document.getElementById("pass").value;
 
-  if (!user || !pass) {
-    alert("Username & password wajib diisi");
-    return;
+    if (!user || !pass) {
+      alert("Isi username & password");
+      return;
+    }
+
+    document.getElementById("login").classList.add("hidden");
+    document.getElementById("panel").classList.remove("hidden");
+    document.getElementById("showUser").innerText = user;
   }
 
-  document.getElementById("login").style.display = "none";
-  document.getElementById("panel").style.display = "block";
-  document.getElementById("showUser").innerText = user;
-}
+  function order(paket, harga) {
+    const roblox = document.getElementById("roblox").value;
 
-function order() {
-  window.location.href = "success.html";
-}
+    if (!roblox) {
+      alert("Username Roblox wajib diisi");
+      return;
+    }
+
+    window.location.href =
+      `success.html?user=${roblox}&paket=${paket}&harga=${harga}`;
+  }
 </script>
 
 </body>
